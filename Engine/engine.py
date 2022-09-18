@@ -55,6 +55,7 @@ class Engine:
         jobs = 5
         while True:
             self.screen.blit(self.resource_pack.load_background, (0, 0))
+            version_information(self.screen, "1.01")
             self.control_set.handle_window()
             loading_indicator.draw((500, 640))
             loading_indicator.tick()
