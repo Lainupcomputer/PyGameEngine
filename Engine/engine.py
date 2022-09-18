@@ -45,7 +45,6 @@ class Engine:
             self.control_set.enable_mouse_click = True
             self.main_menu()
 
-        #self.control_set.handle_keys()
         pygame.display.flip()
         self.clock.tick(10)
 
