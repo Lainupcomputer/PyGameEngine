@@ -1,0 +1,17 @@
+#  Copyright (c) 2022.
+
+import pygame
+
+
+class Resource:
+    def __init__(self, skin=None):
+        self.skin = skin
+        if not skin:
+            # loading screen
+            self.load_background = pygame.image.load("Engine/assets/loading/default.png")
+            self.load_animation = [pygame.image.load("Engine/assets/loading/1.png"),
+                                   pygame.image.load("Engine/assets/loading/2.png"),
+                                   pygame.image.load("Engine/assets/loading/3.png")]
+            # main menu
+            self.menu_background = pygame.image.load("Engine/assets/main_menu/default.png")
+            self.btn_background = pygame.image.load("Engine/assets/main_menu/btn_ui.png")
