@@ -60,6 +60,6 @@ class Console:
 
             else:
                 print("not found")
-                self.swap.console_history.append(f"{str(ipt)} = command not found")
+                self.swap.console_history.append(f'"{str(ipt)}" command not found')
         except IndexError:
             self.swap.console_history.append(f"{str(ipt)} = not executed")
