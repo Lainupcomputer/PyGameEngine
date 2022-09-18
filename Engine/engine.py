@@ -1,6 +1,6 @@
 import sys
 import pygame
-#from Engine.controls import Controls
+
 
 from Engine.ui import Menu_Button
 
@@ -10,7 +10,7 @@ from Engine.lib.storage import Swap
 from Engine.lib.uinput import UInput
 from Engine.lib.console import Console
 from Engine.lib.resource import Resource
-from Engine.lib.interface import animation_no_collision
+from Engine.lib.interface import animation_no_collision, version_information
 
 
 class Engine:
@@ -71,6 +71,8 @@ class Engine:
         while True:
             self.control_set.handle_window()
             self.screen.blit(self.resource_pack.menu_background, (0, 0))
+            version_information(self.screen, "1.01")
+
             # menu buttons
             btn_play = Menu_Button(self.screen, 426, 120, "Play", self.resource_pack, 160)
             if btn_play.check_collision(pygame.mouse.get_pos()):
@@ -103,8 +105,3 @@ class Engine:
             # update
             pygame.display.flip()
             self.clock.tick(30)
-
-
-
-
-
