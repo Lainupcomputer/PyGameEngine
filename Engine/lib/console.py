@@ -50,7 +50,11 @@ class Console:
         print(f"processing {strip}")
         # go through all options
         try:
-            if strip[0] == "game_status":
+            # clear command
+            if strip[0] == "clear":
+                self.swap.console_history.clear()
+
+            elif strip[0] == "game_status":
                 self.swap.game_status = int(strip[1])
                 self.swap.console_history.append(f"{str(ipt)} = {self.swap.game_status}")
 
