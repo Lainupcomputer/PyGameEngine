@@ -29,7 +29,6 @@ class Console:
         self.screen.blit(u_text, (30, 6 + history_offset))
 
     def main_loop(self):
-        print(self.swap.open_console)
         # console loop
         if self.swap.open_console:
             self.render(self.swap.console_input)
