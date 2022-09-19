@@ -54,6 +54,12 @@ class Engine:
             self.control_set.enable_mouse_click = True
             self.sandbox()
 
+        else:
+            self.engine_swap.game_status = 0
+            self.control_set.keys_disabled = True
+            self.control_set.esc_quit = True
+            self.control_set.enable_mouse_click = True
+            self.main_menu()
 
         pygame.display.flip()
         self.clock.tick(10)
