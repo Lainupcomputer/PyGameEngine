@@ -11,6 +11,7 @@ from Engine.lib.uinput import UInput
 from Engine.lib.console import Console
 from Engine.lib.resource import Resource
 from Engine.lib.interface import animation_no_collision, version_information
+from Engine.lib.player import Player
 
 from Level.level import Level
 
@@ -47,7 +48,6 @@ class Engine:
             self.control_set.enable_mouse_click = True
             self.main_menu()
         # sandbox game
-
         if self.engine_swap.game_status == 1337:
             self.control_set.keys_disabled = True
             self.control_set.esc_quit = True
@@ -120,6 +120,7 @@ class Engine:
     def sandbox(self):
         lvl = Level(self.screen, self.engine_swap)
         lvl.read_level_data("demo")
+        player = Player(self.screen, self.resource_pack, self.engine_swap, 400, 300, 32, 32)
         while True:
             self.control_set.handle_window()
             self.screen.blit(self.resource_pack.menu_background, (0, 0))
@@ -127,6 +128,8 @@ class Engine:
             # draw map
             for tile in lvl.tile_maps:
                 tile.draw()
+            # draw player
+            player.mainloop()
 
             self.engine_console.main_loop()
             if self.engine_swap.game_status != 1337:
