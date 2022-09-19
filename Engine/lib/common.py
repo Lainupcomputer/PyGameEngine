@@ -15,3 +15,10 @@ def setup_screen():
     pygame.display.set_caption(WINDOW_TITLE)
     pygame.display.set_icon(WINDOW_ICON)
     return screen
+
+
+# load a file into list
+def load_file(file_name):
+    with open(file_name, "r")as f:
+        return f.readlines()
+
