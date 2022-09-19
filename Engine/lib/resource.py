@@ -8,10 +8,14 @@ class Resource:
         self.skin = skin
         if not skin:
             # loading screen
-            self.load_background = pygame.image.load("Engine/assets/loading/default.png")
-            self.load_animation = [pygame.image.load("Engine/assets/loading/1.png"),
-                                   pygame.image.load("Engine/assets/loading/2.png"),
-                                   pygame.image.load("Engine/assets/loading/3.png")]
+            self.load_background = pygame.image.load("Engine/assets/loading/default.png").convert()
+            self.load_animation = [pygame.image.load("Engine/assets/loading/1.png").convert_alpha(),
+                                   pygame.image.load("Engine/assets/loading/2.png").convert_alpha(),
+                                   pygame.image.load("Engine/assets/loading/3.png").convert_alpha()]
             # main menu
-            self.menu_background = pygame.image.load("Engine/assets/main_menu/default.png")
-            self.btn_background = pygame.image.load("Engine/assets/main_menu/btn_ui.png")
+            self.menu_background = pygame.image.load("Engine/assets/main_menu/default.png").convert()
+            self.btn_background = pygame.image.load("Engine/assets/main_menu/btn_ui.png").convert_alpha()
+            self.player_walk_images = [pygame.image.load("Engine/assets/player/player_walk_0.png").convert_alpha(),
+                                       pygame.image.load("Engine/assets/player/player_walk_1.png").convert_alpha(),
+                                       pygame.image.load("Engine/assets/player/player_walk_2.png").convert_alpha(),
+                                       pygame.image.load("Engine/assets/player/player_walk_3.png").convert_alpha()]
