@@ -12,6 +12,8 @@ from Engine.lib.console import Console
 from Engine.lib.resource import Resource
 from Engine.lib.interface import animation_no_collision, version_information
 
+from Level.level import Level
+
 
 class Engine:
     def __init__(self):
@@ -44,6 +46,14 @@ class Engine:
             self.control_set.esc_quit = True
             self.control_set.enable_mouse_click = True
             self.main_menu()
+        # sandbox game
+
+        if self.engine_swap.game_status == 1337:
+            self.control_set.keys_disabled = True
+            self.control_set.esc_quit = True
+            self.control_set.enable_mouse_click = True
+            self.sandbox()
+
 
         pygame.display.flip()
         self.clock.tick(10)
@@ -105,3 +115,23 @@ class Engine:
             # update
             pygame.display.flip()
             self.clock.tick(30)
+
+    # sandbox == game_status 1337
+    def sandbox(self):
+        lvl = Level(self.screen, self.engine_swap)
+        lvl.read_level_data("demo")
+        while True:
+            self.control_set.handle_window()
+            self.screen.blit(self.resource_pack.menu_background, (0, 0))
+            version_information(self.screen, "1.01")
+            # draw map
+            for tile in lvl.tile_maps:
+                tile.draw()
+
+            self.engine_console.main_loop()
+            if self.engine_swap.game_status != 1337:
+                break
+            # update
+            pygame.display.flip()
+            self.clock.tick(30)
+
