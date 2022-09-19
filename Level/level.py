@@ -11,44 +11,6 @@ def position_grid(grid, offset_x=0, offset_y=0):
     return pos_x, pos_y
 
 
-def level_data_prozessor(data_lines):
-    tile_maps = []
-    tilemap_data = []
-    data_lines.pop(0)
-    # each line in file
-    for line in data_lines:
-        w_line_list = line.split("<")
-        w_line_list.remove("")
-        for tile in w_line_list:
-            # remove new line
-            try:
-                split_1 = tile.split("\n")
-                split_1.remove("")
-                split = split_1[0]
-            except ValueError:
-                split = tile
-            tilemap_data.append(split)
-    #print(tilemap_data)
-    for tile in tilemap_data:
-        source = tile.split(" ")
-        values = []
-        #print(source)
-        for data in source:
-            value = data.split("=")
-            values.append(value[1])
-        #print(values)  # Grid Pos // tile
-        # grid position
-        grid_position = position_grid(values[0].split(":"))
-
-        tile_style = values[1]
-        try:
-            tile_type = values[2]
-        except IndexError:
-            tile_type = "no_type"
-
-        print("grid_position:" + str(grid_position) + "tile_style:" + tile_style + "type:" + tile_type)
-        tile_maps.append(Tile(screen, grid_position, tile_style, tile_type))
-
 class Tile:
 
     def __init__(self, screen, grid_position, tile_style, tile_type):
