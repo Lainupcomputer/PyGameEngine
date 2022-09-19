@@ -1,4 +1,7 @@
+#  Copyright (c) 2022.
+
 import pygame
+from datetime import datetime
 
 # VARIABLES
 SCREEN_SIZE = (1280, 720)
@@ -21,4 +24,11 @@ def setup_screen():
 def load_file(file_name):
     with open(file_name, "r")as f:
         return f.readlines()
+
+
+def get_time_now(raw=True):
+    now = datetime.now()
+    date_time = now.strftime("%d/%m/%Y, %H:%M:%S")
+    if raw:
+        return date_time
 
