@@ -15,13 +15,14 @@ class Tile:
 
     def __init__(self, screen, grid_position, tile_style, tile_type):
         self.screen = screen
-        self.rect = pygame.rect.Rect(grid_position[0], grid_position[1],64,64)
+        self.rect = pygame.rect.Rect(grid_position[0], grid_position[1], 64, 64)
+        self.tile_style = tile_style
 
     def draw(self):
-        pygame.draw.rect(self.screen, (55, 55, 55), self.rect)
-
-
-
+        if self.tile_style == "plain":
+            pygame.draw.rect(self.screen, (55, 55, 55), self.rect)
+        else:
+            pygame.draw.rect(self.screen, (55, 255, 55), self.rect)
 
 
 
@@ -32,7 +33,7 @@ class Level:
         self.swap = swap
         self.tile_maps = []
 
-    def read_level_data(self,level_name):
+    def read_level_data(self, level_name):
         level_file = False
         data_lines = load_file(f"Level/{level_name}.lvl")
         # check if file is a valid map file

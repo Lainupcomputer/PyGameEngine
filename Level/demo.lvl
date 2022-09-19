@@ -1,0 +1,5 @@
+<PyGameEngine-Level>
+<grid=1:1 tile=plain<grid=1:2 tile=plain<grid=1:3 tile=plain
+<grid=2:1 tile=plain<grid=2:2 tile=plain<grid=2:3 tile=plain
+<grid=3:1 tile=plain<grid=3:2 tile=plain<grid=3:3 tile=plain
+<grid=4:4 tile=water type=no_trespass pipe=no<grid=3:3 tile=plain

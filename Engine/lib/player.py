@@ -35,4 +35,3 @@ class Player:
         self.moving_right = False
         self.moving_left = False
 
-
