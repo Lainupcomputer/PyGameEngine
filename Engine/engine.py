@@ -142,5 +142,5 @@ class Engine:
                 break
             # update
             pygame.display.flip()
-            self.clock.tick(30)
+            self.clock.tick(60)
 
