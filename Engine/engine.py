@@ -126,7 +126,7 @@ class Engine:
     def sandbox(self):
         lvl = Level(self.screen, self.engine_swap)
         lvl.read_level_data("demo")
-        player = Player(self.screen, self.resource_pack, self.engine_swap, 400, 300, 32, 32)
+        player = Player(self.screen, self.engine_swap, self.resource_pack,  400, 300, 32, 32)
         while True:
             self.control_set.handle_window()
             self.screen.blit(self.resource_pack.menu_background, (0, 0))
