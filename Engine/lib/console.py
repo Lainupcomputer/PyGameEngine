@@ -1,5 +1,7 @@
 #  Copyright (c) 2022.
+import sys
 import pygame
+from Engine.lib.common import get_time_now
 
 
 class Console:
@@ -45,21 +47,33 @@ class Console:
                 self.swap.console_submit = False
 
     def process_input(self, ipt):
+        user_input = ipt.split(" ")
+        # static
+        # clear command
+        if user_input[0] == "clear":
+            self.swap.console_history.clear()
+            return True
+        # exit console command
+        if user_input[0] == "exit":
+            self.swap.open_console = False
+            return True
+        # quit engine
+        if user_input[0] == "quit":
+            pygame.quit()
+            sys.exit()
 
-        strip = ipt.split("=")
-        print(f"processing {strip}")
-        # go through all options
-        try:
-            # clear command
-            if strip[0] == "clear":
-                self.swap.console_history.clear()
+        # methods with 1 argument
+        if user_input[0] == "gs":
+            try:
+                self.swap.game_status = int(user_input[1])
+                self.swap.console_history.append(f"{get_time_now()}> switched scene to {int(user_input[1])}.")
 
-            elif strip[0] == "game_status" or strip[0] == "gs":
-                self.swap.game_status = int(strip[1])
-                self.swap.console_history.append(f"{str(ipt)} = {self.swap.game_status}")
+            except IndexError:
+                self.swap.console_history.append(f"{get_time_now()}> Error: Index Error.")
 
-            else:
-                print("not found")
-                self.swap.console_history.append(f'"{str(ipt)}" command not found')
-        except IndexError:
-            self.swap.console_history.append(f"{str(ipt)} = not executed")
+            finally:
+                return True
+
+        else:
+            self.swap.console_history.append(f"{get_time_now()}> Error: command not found.")
+
