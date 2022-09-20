@@ -15,14 +15,19 @@ class Tile:
 
     def __init__(self, screen, grid_position, tile_style, tile_type):
         self.screen = screen
-        self.rect = pygame.rect.Rect(grid_position[0], grid_position[1], 64, 64)
+        self.grid_position = grid_position
+        #self.rect = pygame.rect.Rect(grid_position[0], grid_position[1], 64, 64)
         self.tile_style = tile_style
 
-    def draw(self):
+    def draw(self, swap):
         if self.tile_style == "plain":
-            pygame.draw.rect(self.screen, (55, 55, 55), self.rect)
+            self.screen.blit(pygame.transform.scale(
+                pygame.image.load(f"Level/{swap.game_status}/{self.tile_style}.png").convert(), (64, 64)),
+                (self.grid_position[0], self.grid_position[1]))
+            #pygame.draw.rect(self.screen, (55, 55, 55), self.rect)
         else:
-            pygame.draw.rect(self.screen, (55, 255, 55), self.rect)
+            #pygame.draw.rect(self.screen, (55, 255, 55), self.rect)
+            pass
 
 
 
