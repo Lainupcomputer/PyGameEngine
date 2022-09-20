@@ -66,7 +66,7 @@ class Engine:
 
     # loading/splash screen == game_status -1
     def splash(self):
-        loading_indicator = animation_no_collision(self.screen, self.resource_pack)
+        loading_indicator = animation_no_collision(self.screen, self.resource_pack.load_animation)
         jobs = 5
         while True:
             self.screen.blit(self.resource_pack.load_background, (0, 0))
