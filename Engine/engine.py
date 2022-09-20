@@ -10,7 +10,7 @@ from Engine.lib.storage import Swap
 from Engine.lib.uinput import UInput
 from Engine.lib.console import Console
 from Engine.lib.resource import Resource
-from Engine.lib.interface import animation_no_collision, version_information
+from Engine.lib.interface import animation_no_collision, version_information, Arrow_Button
 from Engine.lib.player import Player
 
 from Level.level import Level
@@ -127,13 +127,15 @@ class Engine:
         lvl = Level(self.screen, self.engine_swap)
         lvl.read_level_data("demo")
         player = Player(self.screen, self.engine_swap, self.resource_pack,  400, 300, 32, 32)
+        btn_test = Arrow_Button(self.screen, self.resource_pack.arrow_button_animation)
+
         while True:
             self.control_set.handle_window()
             self.screen.blit(self.resource_pack.menu_background, (0, 0))
             version_information(self.screen, "1.01")
             # draw map
             for tile in lvl.tile_maps:
-                tile.draw()
+                tile.draw(self.engine_swap)
             # draw player
             player.mainloop()
 
@@ -141,6 +143,9 @@ class Engine:
             if self.engine_swap.game_status != 1337:
                 break
             # update
+            # tests
+            btn_test.draw((100, 100), 90)
+            btn_test.tick()
             pygame.display.flip()
             self.clock.tick(60)
 
