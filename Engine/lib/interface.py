@@ -35,15 +35,15 @@ class animation_no_collision(Animation):
         if self.frame >= len(self.animation):
             self.frame = -1
 
-    def tick(self):
-        self.frame += 1
 
+class Arrow_Button(Animation):
+    def __init__(self, screen, resource):
+        super().__init__(screen, resource)
 
-class version_information:
+    def draw(self, pos=(0, 0), angle=0, scale=(64, 64)):
+        if self.frame < len(self.animation):
+            rotate = pygame.transform.rotate(self.animation[self.frame], angle)
+            self.screen.blit(pygame.transform.scale(rotate, scale), pos)
 
-    def __init__(self, screen, version):
-        self.screen = screen
-        self.font = pygame.font.SysFont("comicsansms", 12).render(f"Version:{version}", True, (55, 55, 55))
-        rect = self.font.get_rect()
-        rect.topleft = (20, 700)  # place
-        self.screen.blit(self.font, rect)
+        if self.frame >= len(self.animation):
+            self.frame = -1
