@@ -26,28 +26,31 @@ def splash(screen, resource_pack, control_set, swap, clk):
 
 # main_menu screen == game_status 0
 def main_menu(screen, resource_pack, control_set, swap, console, clk):
+    # overwrite font
+    font = "Engine/assets/alagard.ttf"
     while True:
+
         control_set.handle_window()
         screen.blit(resource_pack.menu_background, (0, 0))
         version_information(screen, "1.01")
 
         # button play game
-        b_play = Button(screen, resource_pack.btn_background, 426, 120, "Play", text_center=True)
+        b_play = Button(screen, resource_pack.btn_background, 426, 120, "Play", text_center=True, font=font)
         if b_play.check_collision(control_set.get_mouse_pos()):
             if swap.mouse_left_click:
                 control_set.reset_mouse()
         # button player & saves
-        b_pl_sv = Button(screen, resource_pack.btn_background, 426, 240, "Player & Saves", text_center=True)
+        b_pl_sv = Button(screen, resource_pack.btn_background, 426, 240, "Player & Saves", text_center=True, font=font)
         if b_pl_sv.check_collision(control_set.get_mouse_pos()):
             if swap.mouse_left_click:
                 control_set.reset_mouse()
         # button settings
-        b_settings = Button(screen, resource_pack.btn_background, 426, 360, "Settings", text_center=True)
+        b_settings = Button(screen, resource_pack.btn_background, 426, 360, "Settings", text_center=True, font=font)
         if b_settings.check_collision(control_set.get_mouse_pos()):
             if swap.mouse_left_click:
                 control_set.reset_mouse()
         # button quit game
-        b_quit = Button(screen, resource_pack.btn_background, 426, 480, "Quit", text_center=True)
+        b_quit = Button(screen, resource_pack.btn_background, 426, 480, "Quit", text_center=True, font=font)
         if b_quit.check_collision(control_set.get_mouse_pos()):
             if swap.mouse_left_click:
                 pygame.quit()
