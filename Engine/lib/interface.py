@@ -49,11 +49,13 @@ class Button:
         # blit button_image
         screen.blit(resource, (x, y))
         # calculate position
-        offset = 10
+        padding_x = 10
         if text_center:
             # x
-            x - get_string_len(text) * text_size
-            x += offset
+            px_text = get_string_len(text) * text_size / 2
+            xc = (resource_size[0] - px_text) / 2
+            x += padding_x
+            x += xc
 
             # y
             half = resource_size[1] / 2 - text_size / 2
