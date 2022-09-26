@@ -1,21 +1,18 @@
-import sys
+#  Copyright (c) 2022.
+
 import pygame
-
-
-from Engine.ui import Menu_Button
-
 
 from Engine.lib.common import setup_screen
 from Engine.lib.storage import Swap
 from Engine.lib.uinput import UInput
 from Engine.lib.console import Console
 from Engine.lib.resource import Resource
-from Engine.lib.interface import animation_no_collision, version_information, Arrow_Button
+from Engine.lib.interface import version_information, Arrow_Button
 from Engine.lib.player import Player
 
 from Level.level import Level
 
-from Engine.lib.default_level import splash, main_menu
+from Engine.lib.default_scene import splash, main_menu
 
 
 class Engine:
