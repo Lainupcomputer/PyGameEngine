@@ -70,3 +70,7 @@ class UInput:
     def reset_mouse(self):
         self.swap.mouse_left_click = False
         self.swap.mouse_right_click = False
+
+    @staticmethod
+    def get_mouse_pos():
+        return pygame.mouse.get_pos()
