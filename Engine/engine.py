@@ -49,7 +49,7 @@ class Engine:
                       self.engine_console, self.clock)
         # sandbox game
         if self.engine_swap.game_status == 1337:
-            self.control_set.keys_disabled = True
+            self.control_set.keys_disabled = False
             self.control_set.esc_quit = True
             self.control_set.enable_mouse_click = True
             self.sandbox()
@@ -71,7 +71,7 @@ class Engine:
     def sandbox(self):
         lvl = Level(self.screen, self.engine_swap)
         lvl.read_level_data("demo")
-        player = Player(self.screen, self.engine_swap, self.resource_pack,  400, 300, 32, 32)
+        player = Player(self.screen, self.engine_swap, self.resource_pack, self.control_set,  400, 300)
         btn_test = Arrow_Button(self.screen, self.resource_pack.arrow_button_animation)
 
         while True:

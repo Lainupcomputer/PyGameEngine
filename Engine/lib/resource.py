@@ -20,6 +20,10 @@ class Resource:
                                        pygame.image.load("Engine/assets/player/player_walk_1.png").convert_alpha(),
                                        pygame.image.load("Engine/assets/player/player_walk_2.png").convert_alpha(),
                                        pygame.image.load("Engine/assets/player/player_walk_3.png").convert_alpha()]
+            self.player_weapon = pygame.image.load("Engine/assets/player/player_weapon.png").convert_alpha()
+
+
+
             # Ui
             self.arrow_button_animation = [pygame.image.load("Engine/assets/ui/arrow_1.png").convert_alpha(),
                                            pygame.image.load("Engine/assets/ui/arrow_2.png").convert_alpha(),

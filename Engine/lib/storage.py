@@ -16,4 +16,6 @@ class Swap:
         # # # # # # # INPUTS
         self.mouse_left_click = False
         self.mouse_right_click = False
+        self.player_moving_right = False
+        self.player_moving_left = False
 
