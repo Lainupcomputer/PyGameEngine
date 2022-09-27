@@ -10,7 +10,8 @@ class version_information:
     def __init__(self, screen, version):
         position = (20, 700)
         self.screen = screen
-        self.font = pygame.font.Font("Engine/assets/3Dventure.ttf", 16).render(f"version : {version}", True, (55, 55, 55))
+        self.font = pygame.font.Font("Engine/assets/3Dventure.ttf", 16).render(
+            f"version : {version}", True, (55, 55, 55))
         rect = self.font.get_rect()
         # place
         rect.topleft = position
@@ -35,6 +36,19 @@ class Text:
         rect = text_obj.get_rect()
         rect.topleft = self.position
         self.screen.blit(text_obj, rect)
+
+
+# Animation Base Class
+class Animation:
+    def __init__(self, screen, resource):
+        self.screen = screen
+        # get preloaded Animation images as list
+        self.animation = resource
+        # decides index of self.animation
+        self.frame = 0
+
+    def tick(self):
+        self.frame += 1
 
 
 class Button:
@@ -70,21 +84,6 @@ class Button:
             return False
 
 
-
-
-# Animation Base Class
-class Animation:
-    def __init__(self, screen, resource):
-        self.screen = screen
-        # get preloaded Animation images as list
-        self.animation = resource
-        # decides index of self.animation
-        self.frame = 0
-
-    def tick(self):
-        self.frame += 1
-
-
 class animation_no_collision(Animation):
 
     def __init__(self, screen, resource):
@@ -114,4 +113,3 @@ class Toggle_Button:
 
     def __init__(self, screen):
         self.screen = screen
-
