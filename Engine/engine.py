@@ -3,10 +3,9 @@
 import pygame
 
 from Engine.lib.common import setup_screen
-from Engine.lib.storage import Swap
+from Engine.lib.storage import Swap, Resource
 from Engine.lib.uinput import UInput
 from Engine.lib.console import Console
-from Engine.lib.resource import Resource
 from Engine.lib.interface import version_information, Arrow_Button
 from Engine.lib.player import Player
 
