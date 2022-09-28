@@ -13,7 +13,7 @@ def splash(screen, resource_pack, control_set, swap, clk):
         screen.blit(resource_pack.load_background, (0, 0))
         version_information(screen, "1.01")
         control_set.handle_window()
-        loading_indicator.draw((500, 640))
+        loading_indicator.draw((490, 540))
         loading_indicator.tick()
         jobs -= 1
         if jobs < 0:
