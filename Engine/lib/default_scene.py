@@ -1,6 +1,6 @@
 #  Copyright (c) 2022.
 
-from Engine.lib.interface import animation_no_collision, version_information, Button
+from Engine.lib.interface import animation_no_collision, version_information, Button, Text
 import pygame
 import sys
 
@@ -10,7 +10,8 @@ def splash(screen, resource_pack, control_set, swap, clk):
     loading_indicator = animation_no_collision(screen, resource_pack.load_animation)
     jobs = 5
     while True:
-        screen.blit(resource_pack.load_background, (0, 0))
+        screen.blit(pygame.transform.scale(resource_pack.load_background, (1280, 720)), (0, 0))
+        Text(screen, (400, 300)).render(text="Tile Walker", size=100, color=(200, 20, 20), font="alagard")
         version_information(screen, "1.01")
         control_set.handle_window()
         loading_indicator.draw((490, 540))
