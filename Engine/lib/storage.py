@@ -29,11 +29,13 @@ class Resource:
         self.skin = skin
         if not skin:
             try:
-            # loading screen
-                self.load_background = pygame.image.load("Engine/assets/loading/default.png").convert()
-                self.load_animation = [pygame.image.load("Engine/assets/loading/1.png").convert_alpha(),
-                                       pygame.image.load("Engine/assets/loading/2.png").convert_alpha(),
-                                       pygame.image.load("Engine/assets/loading/3.png").convert_alpha()]
+                # loading screen
+                self.load_background = pygame.image.load("Engine/assets/loading/loading_background.png").convert()
+                self.load_animation = [pygame.image.load("Engine/assets/loading/loading_0.png").convert_alpha(),
+                                       pygame.image.load("Engine/assets/loading/loading_1.png").convert_alpha(),
+                                       pygame.image.load("Engine/assets/loading/loading_2.png").convert_alpha(),
+                                       pygame.image.load("Engine/assets/loading/loading_3.png").convert_alpha(),
+                                       pygame.image.load("Engine/assets/loading/loading_4.png").convert_alpha()]
                 # main menu
                 self.menu_background = pygame.image.load("Engine/assets/main_menu/default.png").convert()
                 self.btn_background = pygame.image.load("Engine/assets/main_menu/btn_ui.png").convert_alpha()
