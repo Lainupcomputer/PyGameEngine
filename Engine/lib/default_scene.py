@@ -27,7 +27,7 @@ def splash(screen, resource_pack, control_set, swap, clk):
 # main_menu screen == game_status 0
 def main_menu(screen, resource_pack, control_set, swap, console, clk):
     # overwrite font
-    font = "Engine/assets/alagard.ttf"
+    font = "alagard"
     while True:
 
         control_set.handle_window()

@@ -30,7 +30,7 @@ class Text:
         if font is None:
             self.font = pygame.font.Font("Engine/assets/3Dventure.ttf", size)
         else:
-            self.font = pygame.font.Font(f"{font}", size)
+            self.font = pygame.font.Font(f"Engine/assets/{font}.ttf", size)
 
         text_obj = self.font.render(f"{text}", True, color)
         rect = text_obj.get_rect()
