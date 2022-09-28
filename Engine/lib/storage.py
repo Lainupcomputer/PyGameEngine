@@ -1,4 +1,5 @@
 #  Copyright (c) 2022.
+import sys
 import pygame
 
 
@@ -52,3 +53,6 @@ class Resource:
                                                pygame.image.load("Engine/assets/ui/arrow_4.png").convert_alpha()]
             except FileNotFoundError:
                 input("Verify Game Files!")
+                pygame.quit()
+                sys.exit()
+
