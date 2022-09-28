@@ -75,6 +75,7 @@ class Engine:
 
         while True:
             self.control_set.handle_window()
+            self.control_set.handle_keys()
             self.screen.blit(self.resource_pack.menu_background, (0, 0))
             version_information(self.screen, "1.01")
             # draw map

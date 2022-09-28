@@ -22,6 +22,8 @@ class Swap:
         self.mouse_right_click = False
         self.player_moving_right = False
         self.player_moving_left = False
+        # camera
+        self.camera_pos = [0, 0]
 
 
 class Resource:

@@ -23,7 +23,7 @@ class Tile:
         if self.tile_style == "plain":
             self.screen.blit(pygame.transform.scale(
                 pygame.image.load(f"Level/{swap.game_status}/{self.tile_style}.png").convert(), (64, 64)),
-                (self.grid_position[0], self.grid_position[1]))
+                (self.grid_position[0] + swap.camera_pos[0], self.grid_position[1] + swap.camera_pos[1]))
             #pygame.draw.rect(self.screen, (55, 55, 55), self.rect)
         else:
             #pygame.draw.rect(self.screen, (55, 255, 55), self.rect)
