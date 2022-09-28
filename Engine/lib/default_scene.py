@@ -39,6 +39,7 @@ def main_menu(screen, resource_pack, control_set, swap, console, clk):
         b_play = Button(screen, resource_pack.btn_background, 426, 120, "Play", text_center=True, font=font)
         if b_play.check_collision(control_set.get_mouse_pos()):
             if swap.mouse_left_click:
+                swap.game_status = 1337
                 control_set.reset_mouse()
         # button player & saves
         b_pl_sv = Button(screen, resource_pack.btn_background, 426, 240, "Player & Saves", text_center=True, font=font)
