@@ -12,7 +12,7 @@ def splash(screen, resource_pack, control_set, swap, clk):
     while True:
         screen.blit(pygame.transform.scale(resource_pack.load_background, (1280, 720)), (0, 0))
         Text(screen, (400, 300)).render(text="Tile Walker", size=100, color=(200, 20, 20), font="alagard")
-        version_information(screen, "1.01")
+        version_information(screen, swap.local_version)
         control_set.handle_window()
         loading_indicator.draw((490, 540))
         loading_indicator.tick()
@@ -33,7 +33,7 @@ def main_menu(screen, resource_pack, control_set, swap, console, clk):
 
         control_set.handle_window()
         screen.blit(resource_pack.menu_background, (0, 0))
-        version_information(screen, "1.01")
+        version_information(screen, swap.local_version)
 
         # button play game
         b_play = Button(screen, resource_pack.btn_background, 426, 120, "Play", text_center=True, font=font)

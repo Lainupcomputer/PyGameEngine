@@ -6,6 +6,7 @@ import pygame
 class Swap:
     def __init__(self):
         # game var default
+        self.local_version = "0.0.1.1"
         # - 1 // Entrypoint
         self.game_status = -1
         # # # # # # #  CONSOLE

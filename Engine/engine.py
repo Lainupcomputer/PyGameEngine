@@ -79,7 +79,7 @@ class Engine:
             self.control_set.handle_window()
             self.control_set.handle_keys()
             self.screen.blit(self.resource_pack.menu_background, (0, 0))
-            version_information(self.screen, "1.01")
+            version_information(self.screen, self.engine_swap.local_version)
             # draw map
             for tile in lvl.tile_maps:
                 tile.draw(self.engine_swap)
