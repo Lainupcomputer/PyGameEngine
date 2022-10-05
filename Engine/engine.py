@@ -15,11 +15,11 @@ from Engine.lib.default_scene import splash, main_menu
 
 
 class Engine:
-    def __init__(self):
+    def __init__(self, swap):
         self.screen = setup_screen()
         if pygame.get_init():
-            # create Swap space -> Global Variables
-            self.engine_swap = Swap()
+            # get Swap space -> Global Variables
+            self.engine_swap = swap
             # create Control Object -> all functions for user input
             self.control_set = UInput(self.engine_swap)
             # init console Object -> all console functions !default "F1"
