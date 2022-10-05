@@ -36,7 +36,7 @@ class Resource:
         if not skin:
             try:
                 # loading screen
-                self.load_background = pygame.image.load("Engine/assets/loading/loading_background.png").convert()
+                self.load_background = pygame.image.load("Engine/assets/loading/loading_bg.png").convert()
                 self.load_animation = [pygame.image.load("Engine/assets/loading/loading_0.png").convert_alpha(),
                                        pygame.image.load("Engine/assets/loading/loading_1.png").convert_alpha(),
                                        pygame.image.load("Engine/assets/loading/loading_2.png").convert_alpha(),
