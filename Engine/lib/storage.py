@@ -49,7 +49,7 @@ class Resource:
                                            pygame.image.load("Engine/assets/player/player_walk_1.png").convert_alpha(),
                                            pygame.image.load("Engine/assets/player/player_walk_2.png").convert_alpha(),
                                            pygame.image.load("Engine/assets/player/player_walk_3.png").convert_alpha()]
-                self.player_weapon = pygame.image.load("Engine/assets/player/player_weapon.png").convert_alpha()
+                self.player_weapon = pygame.image.load("Engine/assets/player/weapon_circle.png").convert_alpha()
 
 
 
