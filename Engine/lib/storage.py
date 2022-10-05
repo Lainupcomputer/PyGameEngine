@@ -5,7 +5,8 @@ import pygame
 
 class Swap:
     def __init__(self):
-        # game var default- 1 // Entrypoint
+        # game var default
+        # - 1 // Entrypoint
         self.game_status = -1
         # # # # # # #  CONSOLE
         self.open_console = False
@@ -24,6 +25,8 @@ class Swap:
         self.player_moving_left = False
         # camera
         self.camera_pos = [0, 0]
+        # player
+        self.player_alive = False
 
 
 class Resource:

@@ -61,6 +61,11 @@ class Console:
         if user_input[0] == "quit":
             pygame.quit()
             sys.exit()
+        # kill player
+        if user_input[0] == "kill":
+            self.swap.player_alive = False
+            self.swap.console_history.append(f"{get_time_now()}> Player killed.")
+            return True
 
         # methods with 1 argument
         if user_input[0] == "gs":
@@ -74,6 +79,7 @@ class Console:
             finally:
                 return True
 
+        # no command registerd
         else:
             self.swap.console_history.append(f"{get_time_now()}> Error: command not found.")
 

@@ -72,6 +72,8 @@ class Engine:
         lvl.read_level_data("demo")
         player = Player(self.screen, self.engine_swap, self.resource_pack, self.control_set,  400, 300)
         btn_test = Arrow_Button(self.screen, self.resource_pack.arrow_button_animation)
+        # set player alive
+        self.engine_swap.player_alive = True
 
         while True:
             self.control_set.handle_window()
