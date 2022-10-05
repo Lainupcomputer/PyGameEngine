@@ -15,6 +15,8 @@ class UInput:
         self.ctrl_key_down = pygame.K_s
         self.ctrl_key_left = pygame.K_a
         self.ctrl_key_right = pygame.K_d
+        self.ctrl_key_strg = pygame.K_LCTRL
+        # not implemented
         self.ctrl_key_jump = pygame.K_SPACE
         self.ctrl_key_action = pygame.K_f
         self.ctrl_key_action_2 = pygame.K_q
@@ -106,6 +108,11 @@ class UInput:
             # move down
             if keys[self.ctrl_key_down]:
                 self.swap.camera_pos[1] -= 5
+            # if pressed draw indicator for aim
+            if keys[self.ctrl_key_strg]:
+                self.swap.aim_indicator = True
+
+
 
 
 

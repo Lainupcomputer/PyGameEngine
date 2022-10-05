@@ -26,9 +26,13 @@ class Player:
         angle = (180 / math.pi) * -math.atan2(rel_y, rel_x)
         # weapon image
         player_weapon = pygame.transform.rotate(self.resource.player_weapon, angle)
-
+        # blit image
         self.screen.blit(player_weapon, (self.x + 15 - int(player_weapon.get_width() / 2),
                                          self.y + 25 - int(player_weapon.get_height() / 2)))
+        # draw aim line if "ctrl key pressed"
+        if self.swap.aim_indicator:
+            x, y = self.scale[0] / 2, self.scale[1] / 2
+            pygame.draw.line(self.screen, (255, 55, 55), (self.x + x, self.y + y), (mouse_x, mouse_y))
 
     def mainloop(self):
         # animation
@@ -57,3 +61,4 @@ class Player:
         self.handle_weapon()
         self.swap.player_moving_right = False
         self.swap.player_moving_left = False
+        self.swap.aim_indicator = False
