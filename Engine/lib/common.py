@@ -31,8 +31,12 @@ def load_file(file_name):
 # return date_time_now_formated
 def get_time_now(raw=True):
     now = datetime.now()
-    date_time = now.strftime("%d/%m/%Y, %H:%M:%S")
     if raw:
+        date_time = now.strftime("%d/%m/%Y, %H:%M:%S")
+        return date_time
+
+    if not raw:
+        date_time = now.strftime("%d-%m-%Y_%H-%M-%S")
         return date_time
 
 
