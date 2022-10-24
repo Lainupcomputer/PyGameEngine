@@ -51,19 +51,16 @@ class Resource:
                 self.menu_background = try_load_img(f"{asset_root}/main_menu/default.png", convert=True)
                 self.btn_background = try_load_img(f"{asset_root}/main_menu/btn_ui.png", convert_a=True)
                 # player
-                self.player_walk_images = [pygame.image.load("Engine/assets/player/player_walk_0.png").convert_alpha(),
-                                           pygame.image.load("Engine/assets/player/player_walk_1.png").convert_alpha(),
-                                           pygame.image.load("Engine/assets/player/player_walk_2.png").convert_alpha(),
-                                           pygame.image.load("Engine/assets/player/player_walk_3.png").convert_alpha()]
-                self.player_weapon = pygame.image.load("Engine/assets/player/weapon_circle.png").convert_alpha()
-
-
-
+                self.player_walk_images = [try_load_img(f"{asset_root}/player/player_walk_0.png", convert_a=True),
+                                           try_load_img(f"{asset_root}/player/player_walk_1.png", convert_a=True),
+                                           try_load_img(f"{asset_root}/player/player_walk_2.png", convert_a=True),
+                                           try_load_img(f"{asset_root}/player/player_walk_3.png", convert_a=True)]
+                self.player_weapon = try_load_img(f"{asset_root}/player/weapon_circle.png", convert_a=True)
                 # Ui
-                self.arrow_button_animation = [pygame.image.load("Engine/assets/ui/arrow_1.png").convert_alpha(),
-                                               pygame.image.load("Engine/assets/ui/arrow_2.png").convert_alpha(),
-                                               pygame.image.load("Engine/assets/ui/arrow_3.png").convert_alpha(),
-                                               pygame.image.load("Engine/assets/ui/arrow_4.png").convert_alpha()]
+                self.arrow_button_animation = [try_load_img(f"{asset_root}/ui/arrow_1.png", convert_a=True),
+                                               try_load_img(f"{asset_root}/ui/arrow_2.png", convert_a=True),
+                                               try_load_img(f"{asset_root}/ui/arrow_3.png", convert_a=True),
+                                               try_load_img(f"{asset_root}/ui/arrow_4.png", convert_a=True)]
             except FileNotFoundError:
                 input("Verify Game Files!")
                 pygame.quit()
