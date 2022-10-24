@@ -26,7 +26,7 @@ remote_version = get_external_version()
 
 
 def start_game(swap):
-    game = engine.Engine(swap, logger)
+    game = engine.Engine(swap)
     game.main_loop()
 
 
