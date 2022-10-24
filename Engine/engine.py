@@ -1,9 +1,10 @@
 #  Copyright (c) 2022.
 
 import pygame
+import logging
 
 from Engine.lib.common import setup_screen
-from Engine.lib.storage import Swap, Resource
+from Engine.lib.storage import Resource, Savegame
 from Engine.lib.uinput import UInput
 from Engine.lib.console import Console
 from Engine.lib.interface import version_information, Arrow_Button
@@ -16,21 +17,25 @@ from Engine.lib.default_scene import splash, main_menu
 
 class Engine:
     def __init__(self, swap):
+        logging.info("-" * 10 + "Engine initialisation started" + "-" * 10)
         self.screen = setup_screen()
         if pygame.get_init():
             # get Swap space -> Global Variables
             self.engine_swap = swap
-            # create Control Object -> all functions for user input
+            logging.info("create Control Object")
             self.control_set = UInput(self.engine_swap)
-            # init console Object -> all console functions !default "F1"
+            logging.info("create Console Object")
             self.engine_console = Console(self.screen, self.engine_swap)
-            # get Resource pack -> all preloaded assets
+            logging.info("create Asset-Loader Object")
             self.resource_pack = Resource(skin=None)
-            # init clock
+            logging.info("create/load Savegame")
+            self.savegame = Savegame()
+            logging.info("create Clock")
             self.clock = pygame.time.Clock()
 
     # Engine main loop // scene handler
     def main_loop(self):
+        logging.debug("Engine started successfully.")
         self.screen.fill((155, 155, 155))
         # read game status -> redirect to game state function
         # loading
