@@ -4,7 +4,7 @@ import pygame
 import logging
 
 from Engine.lib.common import setup_screen
-from Engine.lib.storage import Resource, Savegame
+from Engine.lib.storage import Resource
 from Engine.lib.uinput import UInput
 from Engine.lib.console import Console
 from Engine.lib.interface import version_information, Arrow_Button
@@ -29,8 +29,6 @@ class Engine:
             logging.info("create Asset-Loader Object")
             self.resource_pack = Resource(skin=None)
             logging.info("create/load Savegame")
-            self.savegame = Savegame()
-            logging.info("create Clock")
             self.clock = pygame.time.Clock()
 
     # Engine main loop // scene handler

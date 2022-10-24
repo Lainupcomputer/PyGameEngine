@@ -71,17 +71,3 @@ class Resource:
         logging.info("-" * 10 + "Asset-Loader done." + "-" * 10)
 
 
-default_savegame = ["starts=0\n", "tutorial=True\n"]
-
-
-class Savegame:
-    def __init__(self):
-        try:
-            with open("savegame", "r") as t:
-                lines = t.readlines()
-
-        except FileNotFoundError:
-            with open("savegame", "w") as f:
-                f.writelines(default_savegame)
-
-
