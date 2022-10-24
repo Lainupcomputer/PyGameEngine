@@ -2,6 +2,8 @@
 
 import pygame
 from datetime import datetime
+import logging
+import sys
 
 # VARIABLES
 SCREEN_SIZE = (1280, 720)
@@ -26,9 +28,36 @@ def load_file(file_name):
         return f.readlines()
 
 
+# return date_time_now_formated
 def get_time_now(raw=True):
     now = datetime.now()
-    date_time = now.strftime("%d/%m/%Y, %H:%M:%S")
     if raw:
+        date_time = now.strftime("%d/%m/%Y, %H:%M:%S")
         return date_time
+
+    if not raw:
+        date_time = now.strftime("%d-%m-%Y_%H-%M-%S")
+        return date_time
+
+
+# return length of string
+def get_string_len(string):
+    return len(string)
+
+
+def try_load_img(path, convert=False, convert_a=False):
+    try:
+        logging.info(f"loading asset:'{path}'")
+        if convert_a:
+            img = pygame.image.load(path).convert_alpha()
+        elif convert:
+            img = pygame.image.load(path).convert()
+        else:
+            img = pygame.image.load(path)
+
+        logging.info(f"asset:'{path}' loaded.")
+        return img
+    except FileNotFoundError:
+        logging.critical(f"'{path}', resource not found")
+        sys.exit(f"'{path}', resource not found")
 

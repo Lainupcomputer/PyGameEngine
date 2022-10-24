@@ -1,38 +1,39 @@
-import sys
+#  Copyright (c) 2022.
+
 import pygame
-
-
-from Engine.ui import Menu_Button
-
+import logging
 
 from Engine.lib.common import setup_screen
-from Engine.lib.storage import Swap
+from Engine.lib.storage import Resource
 from Engine.lib.uinput import UInput
 from Engine.lib.console import Console
-from Engine.lib.resource import Resource
-from Engine.lib.interface import animation_no_collision, version_information
+from Engine.lib.interface import version_information, Arrow_Button
 from Engine.lib.player import Player
 
 from Level.level import Level
 
+from Engine.lib.default_scene import splash, main_menu
+
 
 class Engine:
-    def __init__(self):
+    def __init__(self, swap):
+        logging.info("-" * 10 + "Engine initialisation started" + "-" * 10)
         self.screen = setup_screen()
         if pygame.get_init():
-            # create Swap space -> Global Variables
-            self.engine_swap = Swap()
-            # create Control Object -> all functions for user input
+            # get Swap space -> Global Variables
+            self.engine_swap = swap
+            logging.info("create Control Object")
             self.control_set = UInput(self.engine_swap)
-            # init console Object -> all console functions !default "F1"
+            logging.info("create Console Object")
             self.engine_console = Console(self.screen, self.engine_swap)
-            # get Resource pack -> all preloaded assets
+            logging.info("create Asset-Loader Object")
             self.resource_pack = Resource(skin=None)
-            # init clock
+            logging.info("create/load Savegame")
             self.clock = pygame.time.Clock()
 
     # Engine main loop // scene handler
     def main_loop(self):
+        logging.debug("Engine started successfully.")
         self.screen.fill((155, 155, 155))
         # read game status -> redirect to game state function
         # loading
@@ -40,16 +41,17 @@ class Engine:
             self.control_set.keys_disabled = True
             self.control_set.esc_quit = False
             self.control_set.enable_mouse_click = False
-            self.splash()
+            splash(self.screen, self.resource_pack, self.control_set, self.engine_swap, self.clock)
         # main menu
         if self.engine_swap.game_status == 0:
             self.control_set.keys_disabled = True
             self.control_set.esc_quit = True
             self.control_set.enable_mouse_click = True
-            self.main_menu()
+            main_menu(self.screen, self.resource_pack, self.control_set, self.engine_swap,
+                      self.engine_console, self.clock)
         # sandbox game
         if self.engine_swap.game_status == 1337:
-            self.control_set.keys_disabled = True
+            self.control_set.keys_disabled = False
             self.control_set.esc_quit = True
             self.control_set.enable_mouse_click = True
             self.sandbox()
@@ -59,81 +61,31 @@ class Engine:
             self.control_set.keys_disabled = True
             self.control_set.esc_quit = True
             self.control_set.enable_mouse_click = True
-            self.main_menu()
+            main_menu(self.screen, self.resource_pack, self.control_set, self.engine_swap,
+                      self.engine_console, self.clock)
 
         pygame.display.flip()
         self.clock.tick(10)
 
-    # loading/splash screen == game_status -1
-    def splash(self):
-        loading_indicator = animation_no_collision(self.screen, self.resource_pack)
-        jobs = 5
-        while True:
-            self.screen.blit(self.resource_pack.load_background, (0, 0))
-            version_information(self.screen, "1.01")
-            self.control_set.handle_window()
-            loading_indicator.draw((500, 640))
-            loading_indicator.tick()
-            jobs -= 1
-            if jobs < 0:
-                self.engine_swap.game_status = 0
-                break
 
-            pygame.display.flip()
-            self.clock.tick(1)
-
-    # main_menu screen == game_status 0
-    def main_menu(self):
-        while True:
-            self.control_set.handle_window()
-            self.screen.blit(self.resource_pack.menu_background, (0, 0))
-            version_information(self.screen, "1.01")
-
-            # menu buttons
-            btn_play = Menu_Button(self.screen, 426, 120, "Play", self.resource_pack, 160)
-            if btn_play.check_collision(pygame.mouse.get_pos()):
-                if self.engine_swap.mouse_left_click:
-                    print("collide play")
-                    self.control_set.reset_mouse()
-
-            btn_player_saves = Menu_Button(self.screen, 426, 240, "Player & Saves", self.resource_pack, 40)
-            if btn_player_saves.check_collision(pygame.mouse.get_pos()):
-                if self.engine_swap.mouse_left_click:
-                    print("collide player_saves")
-                    self.control_set.reset_mouse()
-
-            btn_settings = Menu_Button(self.screen, 426, 360, "Settings", self.resource_pack, 100)
-            if btn_settings.check_collision(pygame.mouse.get_pos()):
-                if self.engine_swap.mouse_left_click:
-                    print("collide settings")
-                    self.control_set.reset_mouse()
-
-            btn_quit = Menu_Button(self.screen, 426, 480, "QUIT", self.resource_pack, 140)
-            if btn_quit.check_collision(pygame.mouse.get_pos()):
-                if self.engine_swap.mouse_left_click:
-                    pygame.quit()
-                    sys.exit()
-
-            self.engine_console.main_loop()
-
-            if self.engine_swap.game_status != 0:
-                break
-            # update
-            pygame.display.flip()
-            self.clock.tick(30)
 
     # sandbox == game_status 1337
     def sandbox(self):
         lvl = Level(self.screen, self.engine_swap)
         lvl.read_level_data("demo")
-        player = Player(self.screen, self.engine_swap, self.resource_pack,  400, 300, 32, 32)
+        player = Player(self.screen, self.engine_swap, self.resource_pack, self.control_set,  400, 300)
+        btn_test = Arrow_Button(self.screen, self.resource_pack.arrow_button_animation)
+        # set player alive
+        self.engine_swap.player_alive = True
+
         while True:
             self.control_set.handle_window()
+            self.control_set.handle_keys()
             self.screen.blit(self.resource_pack.menu_background, (0, 0))
-            version_information(self.screen, "1.01")
+            version_information(self.screen, self.engine_swap.local_version)
             # draw map
             for tile in lvl.tile_maps:
-                tile.draw()
+                tile.draw(self.engine_swap)
             # draw player
             player.mainloop()
 
@@ -141,6 +93,9 @@ class Engine:
             if self.engine_swap.game_status != 1337:
                 break
             # update
+            # tests
+            btn_test.draw((100, 100), 90)
+            btn_test.tick()
             pygame.display.flip()
             self.clock.tick(60)
 
