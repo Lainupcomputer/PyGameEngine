@@ -2,11 +2,12 @@ from Engine import engine
 from Engine.lib.storage import Swap
 from urllib import request
 import logging
+from Engine.lib.common import get_time_now
 
 
 # setup logger
 logger = logging.getLogger()
-logging.basicConfig(filename="log.log", level=logging.DEBUG, format="%(asctime)s %(message)s")
+logging.basicConfig(filename=f"Logs/{get_time_now(raw=False)}.log", level=logging.DEBUG, format="%(asctime)s %(message)s")
 logger.info("application started")
 
 logger.info("creating Swap")
