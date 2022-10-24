@@ -1,6 +1,9 @@
 #  Copyright (c) 2022.
 import sys
 import pygame
+import logging
+from Engine.lib.common import try_load_img
+
 
 
 class Swap:
@@ -36,16 +39,17 @@ class Resource:
         self.skin = skin
         if not skin:
             try:
+                asset_root = "Engine/assets"
                 # loading screen
-                self.load_background = pygame.image.load("Engine/assets/loading/loading_bg.png").convert()
-                self.load_animation = [pygame.image.load("Engine/assets/loading/loading_0.png").convert_alpha(),
-                                       pygame.image.load("Engine/assets/loading/loading_1.png").convert_alpha(),
-                                       pygame.image.load("Engine/assets/loading/loading_2.png").convert_alpha(),
-                                       pygame.image.load("Engine/assets/loading/loading_3.png").convert_alpha(),
-                                       pygame.image.load("Engine/assets/loading/loading_4.png").convert_alpha()]
+                self.load_background = try_load_img(f"{asset_root}/loading/loading_bg.png", convert=True)
+                self.load_animation = [try_load_img(f"{asset_root}/loading/loading_0.png", convert_a=True),
+                                       try_load_img(f"{asset_root}/loading/loading_1.png", convert_a=True),
+                                       try_load_img(f"{asset_root}/loading/loading_2.png", convert_a=True),
+                                       try_load_img(f"{asset_root}/loading/loading_3.png", convert_a=True),
+                                       try_load_img(f"{asset_root}/loading/loading_4.png", convert_a=True)]
                 # main menu
-                self.menu_background = pygame.image.load("Engine/assets/main_menu/default.png").convert()
-                self.btn_background = pygame.image.load("Engine/assets/main_menu/btn_ui.png").convert_alpha()
+                self.menu_background = try_load_img(f"{asset_root}/main_menu/default.png", convert=True)
+                self.btn_background = try_load_img(f"{asset_root}/main_menu/btn_ui.png", convert_a=True)
                 # player
                 self.player_walk_images = [pygame.image.load("Engine/assets/player/player_walk_0.png").convert_alpha(),
                                            pygame.image.load("Engine/assets/player/player_walk_1.png").convert_alpha(),
