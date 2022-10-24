@@ -5,7 +5,6 @@ import logging
 from Engine.lib.common import try_load_img
 
 
-
 class Swap:
     def __init__(self):
         # game var default
@@ -37,6 +36,7 @@ class Swap:
 class Resource:
     def __init__(self, skin=None):
         self.skin = skin
+        logging.info("-" * 10 + "Asset-Loader started. skin=" + str(self.skin) + "-" * 10)
         if not skin:
             try:
                 asset_root = "Engine/assets"
@@ -68,4 +68,20 @@ class Resource:
                 input("Verify Game Files!")
                 pygame.quit()
                 sys.exit()
+        logging.info("-" * 10 + "Asset-Loader done." + "-" * 10)
+
+
+default_savegame = ["starts=0\n", "tutorial=True\n"]
+
+
+class Savegame:
+    def __init__(self):
+        try:
+            with open("savegame", "r") as t:
+                lines = t.readlines()
+
+        except FileNotFoundError:
+            with open("savegame", "w") as f:
+                f.writelines(default_savegame)
+
 
