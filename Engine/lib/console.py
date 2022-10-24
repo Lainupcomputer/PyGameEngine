@@ -79,7 +79,7 @@ class Console:
             finally:
                 return True
 
-        # no command registerd
+        # no command registered
         else:
             self.swap.console_history.append(f"{get_time_now()}> Error: command not found.")
 
