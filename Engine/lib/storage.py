@@ -31,6 +31,7 @@ class Swap:
         self.camera_pos = [0, 0]
         # player
         self.player_alive = False
+        self.player_pos = (400, 300)
 
 
 class Resource:
