@@ -45,19 +45,19 @@ def get_string_len(string):
     return len(string)
 
 
-def try_load_img(path, convert=False, convert_a=False):
+def try_load_img(path, convert=False, convert_a=False, v=True):
     try:
-        logging.info(f"loading asset:'{path}'")
+        if v:
+            logging.info(f"loading asset:'{path}'")
         if convert_a:
             img = pygame.image.load(path).convert_alpha()
         elif convert:
             img = pygame.image.load(path).convert()
         else:
             img = pygame.image.load(path)
-
-        logging.info(f"asset:'{path}' loaded.")
+        if v:
+            logging.info(f"asset:'{path}' loaded.")
         return img
     except FileNotFoundError:
         logging.critical(f"'{path}', resource not found")
-        sys.exit(f"'{path}', resource not found")
-
+        sys.exit()
