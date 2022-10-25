@@ -73,7 +73,7 @@ class Engine:
     def sandbox(self):
         lvl = Level(self.screen, self.engine_swap)
         lvl.read_level_data("demo")
-        player = Player(self.screen, self.engine_swap, self.resource_pack, self.control_set,  400, 300)
+        player = Player(self.screen, self.engine_swap, self.resource_pack, self.control_set)
         btn_test = Arrow_Button(self.screen, self.resource_pack.arrow_button_animation)
         # set player alive
         self.engine_swap.player_alive = True
