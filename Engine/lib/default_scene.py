@@ -1,6 +1,8 @@
 #  Copyright (c) 2022.
 
 from Engine.lib.interface import animation_no_collision, version_information, Button, Text
+from Engine.lib.player import Player
+from Engine.lib.map import Map
 import pygame
 import sys
 
@@ -69,3 +71,25 @@ def main_menu(screen, resource_pack, control_set, swap, console, clk):
         clk.tick(30)
 
 
+# endless mode == game_status 1
+def endless_mode(screen, resource_pack, control_set, swap, console, clk):
+    map = Map(screen, swap, "endless")
+    map.map_parser()
+    player = Player(screen, swap, resource_pack, control_set)
+    # set player alive
+    swap.player_alive = True
+
+    while True:
+        control_set.handle_window()
+        control_set.handle_keys()
+        screen.blit(resource_pack.menu_background, (0, 0))
+        version_information(screen, swap.local_version)
+        map.task()
+        # draw player
+        player.mainloop()
+        console.main_loop()
+        if swap.game_status != 1:
+            swap.game_status = 0
+
+        pygame.display.flip()
+        clk.tick(60)

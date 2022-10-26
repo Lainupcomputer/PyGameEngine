@@ -12,7 +12,7 @@ from Engine.lib.player import Player
 
 from Level.level import Level
 
-from Engine.lib.default_scene import splash, main_menu
+from Engine.lib.default_scene import splash, main_menu, endless_mode
 
 
 class Engine:
@@ -55,6 +55,13 @@ class Engine:
             self.control_set.esc_quit = True
             self.control_set.enable_mouse_click = True
             self.sandbox()
+
+        if self.engine_swap.game_status == 1:
+            self.control_set.keys_disabled = False
+            self.control_set.esc_quit = True
+            self.control_set.enable_mouse_click = True
+            endless_mode(self.screen, self.resource_pack, self.control_set, self.engine_swap,
+                         self.engine_console, self.clock)
 
         else:
             self.engine_swap.game_status = 0
