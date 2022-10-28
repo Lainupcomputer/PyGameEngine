@@ -1,8 +1,23 @@
-# Game Engine 
-## About
-a python Game engine 
+# ***TileRunner***
+## Installation:
+> get a valid python installation 3.9 or higher. ([download python](https://www.example.com/my%20great%20page))
+>
+> download this repo, extract and enter directory with a terminal or Powershell
+> 
+***setting up python runtime :***
+>move into redis directory: `cd .\redist\`
+> 
+> create python venv : `python -m venv runtime`
+  - activate venv (Windows 10 or newer): `.\runtime\Scripts\activate.ps1`
+  - activate venv (Linux): `.\runtime\Scripts\activate`
+> install requirements `pip install -r requirements.txt`
+> 
+> close venv `exit`
+>
+> ***Installation done !***
 
-used for all my games 
+
+
 
 ## Controls 
 Move: WASD
